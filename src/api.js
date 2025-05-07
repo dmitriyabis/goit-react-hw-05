@@ -5,7 +5,7 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const options = {
   headers: {
     Authorization:
-      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YmUyYzdhOTVkNjRiMDE2NmRhYzEzOGQ4ZGRiOTdjNyIsIm5iZiI6MTc0NjUxOTA2OS40OTcsInN1YiI6IjY4MTljNDFkYWUzZmQ0ZWRhZjg0ZDc3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cjyfHaO2KW0eWDyjWghQkwcXJkRWl65rU44ZPOvpFQE",
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YmUyYzdhOTVkNjRiMDE2NmRhYzEzOGQ4ZGRiOTdjNyIsIm5iZiI6MTc0NjUxOTA2OS40OTcsInN1YiI6IjY4MTljNDFkYWUzZmQ0ZWRhZjg0ZDc3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cjyfHaO2KW0eWDyjWghQkwcXJkRWl65rU44ZPOvpFQE",
   },
 };
 
