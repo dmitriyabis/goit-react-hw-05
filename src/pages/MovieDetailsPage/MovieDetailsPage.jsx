@@ -1,22 +1,25 @@
 import { useParams, Outlet, Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getMovieDetails } from "../../api";
 
 function MovieDetailsPage() {
   const { movieId } = useParams();
   const location = useLocation();
   const [movie, setMovie] = useState(null);
-  const backLink = location.state?.from || "/movies";
+  // const backLink = location.state?.from || "/movies";
+  const backLink = useRef(location.state?.from || "/");
 
   useEffect(() => {
-    getMovieDetails(movieId).then(({ data }) => setMovie(data));
+    getMovieDetails(movieId)
+      .then(({ data }) => setMovie(data))
+      .catch((err) => console.log(err));
   }, [movieId]);
 
   if (!movie) return <p>Loading...</p>;
 
   return (
     <>
-      <Link to={backLink}>Go back</Link>
+      <Link to={backLink.current}>Go back</Link>
       <h2>{movie.title}</h2>
       <img
         src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -26,12 +29,12 @@ function MovieDetailsPage() {
 
       <ul>
         <li>
-          <Link to="cast" state={{ from: backLink }}>
+          <Link to="cast" state={{ from: backLink.current }}>
             Cast
           </Link>
         </li>
         <li>
-          <Link to="reviews" state={{ from: backLink }}>
+          <Link to="reviews" state={{ from: backLink.current }}>
             Reviews
           </Link>
         </li>
