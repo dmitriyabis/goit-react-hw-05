@@ -1,5 +1,5 @@
 import { useParams, Outlet, Link, useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
 import { getMovieDetails } from "../../api";
 
 function MovieDetailsPage() {
