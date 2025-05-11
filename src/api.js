@@ -21,8 +21,23 @@ export const searchMovies = (query) =>
 export const getMovieDetails = (movieId) =>
   axios.get(`${BASE_URL}/movie/${movieId}`, options);
 
-export const getMovieCast = (movieId) =>
-  axios.get(`${BASE_URL}/movie/${movieId}/credits`, options);
+// export const getMovieCast = (movieId) =>
+//   axios.get(`${BASE_URL}/movie/${movieId}/credits`, options);
+
+export const getMovieCast = async (movieId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/${movieId}/credits`, {
+      headers: options,
+      params: { language: "en-US" },
+    });
+    return response.data.cast;
+  } catch (error) {
+    console.error(
+      `Failed to fetch cast for movie ID ${movieId}:`,
+      error.response ? error.response.data : error.message
+    );
+  }
+};
 
 export const getMovieReviews = (movieId) =>
   axios.get(`${BASE_URL}/movie/${movieId}/reviews`, options);

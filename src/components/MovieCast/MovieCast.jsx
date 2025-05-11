@@ -1,23 +1,26 @@
-import { useParams } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getMovieCredits } from "../../api";
+import { getMovieCast } from "../../api";
 
 function MovieCast() {
-  const { movieId } = useParams();
+  const { movieId } = useOutletContext();
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    getMovieCredits(movieId).then(({ data }) => setCast(data.cast));
+    getMovieCast(movieId).then(setCast);
   }, [movieId]);
 
   return (
-    <ul>
-      {cast.map((actor) => (
-        <li key={actor.cast_id}>
-          {actor.name} as {actor.character}
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h2>Cast</h2>
+      <ul>
+        {cast.map((actor) => (
+          <li key={actor.cast_id}>
+            {actor.name} as {actor.character}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
