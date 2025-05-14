@@ -6,7 +6,6 @@ function MovieDetailsPage() {
   const { movieId } = useParams();
   const location = useLocation();
   const [movie, setMovie] = useState(null);
-  // const backLink = location.state?.from || "/movies";
   const backLink = useRef(location.state?.from || "/");
 
   useEffect(() => {
@@ -39,9 +38,8 @@ function MovieDetailsPage() {
           </Link>
         </li>
       </ul>
-
       <Suspense fallback={<p>Loading...</p>}>
-        <Outlet />
+        <Outlet context={{ movieId }} />
       </Suspense>
     </>
   );
